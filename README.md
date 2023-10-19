@@ -49,19 +49,21 @@
 # 3 Kiểm soát và thao tác dữ liệu:
 
 ## Bảng sách.
-## Tạo procdure insert sách với các điều kiện sau :
+
+**Tạo procdure insert sách với các điều kiện sau :**
 
 -    Khoá chính của sách chưa tồn tại
 -    Khoá ngoại tác giả đã tồn tại
 -    Insert vào đúng site cần thiết.
 
-## Tạo procedure delete_sach với các điều kiện sau:
+**Tạo procedure delete_sach với các điều kiện sau:**
 
 -    Phải tồn tại sách thì mới xoá được ( tồn tại khoá chính).
 -    Sách đang cho mượn thì không được xoá (tồn tại khoá tại bảng mượn sách).
 -    Tìm được đúng site để xoá.
 
 ## Bảng tác giả
+
 **Tạo procedure insert tác giả với các điều kiện sau:**
 
 -    Kiểm tra khoá chính xem đã tồn tại tại các site chưa
@@ -74,6 +76,7 @@
 -    Tìm đến đúng site có dữ liệu xoá để xoá
 
 ## Bảng Đọc Giả:
+
 **Tạo procedure insert DOCGIA với các điều kiện:**
 
 -    Không trùng khoá chính.
@@ -86,6 +89,7 @@
 -    Xoá được dữ liệu ở tất cả các site.
   
 ## Bảng Nhân Viên:
+
 **Tạo procedure insert NHANVIEN với các điều kiện**
 
 -    Không trùng khoá chính.
@@ -97,6 +101,7 @@
 -    Xoá ở tất cả các site.
 
 ## Bảng mượn sách
+
 **Tạo procudure trả sách với các điệu kiện:**
  
 -    Id_mượn sách phải tồn tại
