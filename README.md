@@ -2,7 +2,7 @@
 -  Bảng "Sách" gồm các trường:
   -	  ID_sach: Mã định danh duy nhất của sách.
   -   Tensach: Tên đầy đủ của sách.
-  -    ID_tacgia: Tên tác giả hoặc các tác giả liên quan.
+  -   ID_tacgia: Tên tác giả hoặc các tác giả liên quan.
   -  	Theloai: Thể loại của sách (ví dụ: tiểu thuyết, kỹ thuật, học thuật, v.v.).
   -  	Soluong: Số lượng sách có sẵn trong thư viện.
   
