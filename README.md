@@ -1,4 +1,4 @@
-# 1	Mô tả yêu cầu dữ liệu:# 
+# 1	Mô tả yêu cầu dữ liệu: 
 -  **Bảng "Sách" gồm các trường:**
 
     - ID_sach: Mã định danh duy nhất của sách.
@@ -62,47 +62,47 @@
 -    Tìm được đúng site để xoá.
 
 ## Bảng tác giả
-### Tạo procedure insert tác giả với các điều kiện sau:
+**Tạo procedure insert tác giả với các điều kiện sau:**
 
 -    Kiểm tra khoá chính xem đã tồn tại tại các site chưa
 -    Insert dữ liệu vào đúng site cần thiết.
 
-### Tạo procedure delete tác giả với các điều kiện sau:
+**Tạo procedure delete tác giả với các điều kiện sau:**
 
 -    Phải tồn tại tác giả mới xoá được (tồn tại khoá chính)
 -    Phải không còn sách của tác giả trong kho sách (không tồn tại khoá ngoại tại bảng sách)
 -    Tìm đến đúng site có dữ liệu xoá để xoá
 
 ## Bảng Đọc Giả:
-### Tạo procedure insert DOCGIA với các điều kiện:
+**Tạo procedure insert DOCGIA với các điều kiện:**
 
 -    Không trùng khoá chính.
 -    Insert đúng thông tin cho các mảnh tại các site.
 
-### Tạo procedure delete docgia với các điều kiện:
+**Tạo procedure delete docgia với các điều kiện:**
 
 -    Nếu mà đọc giả chưa tồn tại thì không xoá (trùng khoá chính).
 -    Nếu đọc giả đang mượn sách thì không xoá (còn tồn tại khoá ngoại).
 -    Xoá được dữ liệu ở tất cả các site.
   
 ## Bảng Nhân Viên:
-### Tạo procedure insert NHANVIEN với các điều kiện
+**Tạo procedure insert NHANVIEN với các điều kiện**
 
 -    Không trùng khoá chính.
 -    Insert dữ liệu vào đúng các mảnh tại site.
 
-### Tạo procedure delete NHANVIEN với các điều kiện:
+**Tạo procedure delete NHANVIEN với các điều kiện:**
 
 -    Kiểm tra điều kiện khoá chính tồn tại. 
 -    Xoá ở tất cả các site.
 
 ## Bảng mượn sách
-### Tạo procudure trả sách với các điệu kiện:
+**Tạo procudure trả sách với các điệu kiện:**
  
 -    Id_mượn sách phải tồn tại
 -    Chuyển tình trạng mượn sách từ 0 thành 1 
 
-### Trigger insert cho bảng MUONSACH với các điều kiện yêu cầu sau:
+**Trigger insert cho bảng MUONSACH với các điều kiện yêu cầu sau:**
 
 -    Mã mượn sách không được trùng với các mã trước
 -    Mã đọc giả phải tồn tại từ trước.
