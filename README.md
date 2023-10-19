@@ -1,5 +1,6 @@
 #1	Mô tả yêu cầu dữ liệu: 
 -  Bảng "Sách" gồm các trường:
+
   -	  ID_sach: Mã định danh duy nhất của sách.
   -   Tensach: Tên đầy đủ của sách.
   -   ID_tacgia: Tên tác giả hoặc các tác giả liên quan.
