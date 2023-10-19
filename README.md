@@ -1,4 +1,4 @@
-#1	Mô tả yêu cầu dữ liệu: 
+#1	Mô tả yêu cầu dữ liệu:# 
 -  Bảng "Sách" gồm các trường:
 
     - ID_sach: Mã định danh duy nhất của sách.
