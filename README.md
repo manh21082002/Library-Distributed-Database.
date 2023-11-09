@@ -1,4 +1,4 @@
-#1 Describe the data request:
+# 1 Describe the data request:
 - **Table "Sách" includes fields:**
 
      - ID_book: Unique identifier of the book.
