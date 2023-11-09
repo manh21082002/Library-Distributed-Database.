@@ -1,121 +1,122 @@
-# 1	Mô tả yêu cầu dữ liệu: 
--  **Bảng "Sách" gồm các trường:**
+#1 Describe the data request:
+- **Table "Sách" includes fields:**
 
-    - ID_sach: Mã định danh duy nhất của sách.
-    - Tensach: Tên đầy đủ của sách.
-    - ID_tacgia: Tên tác giả hoặc các tác giả liên quan.
-    - Theloai: Thể loại của sách (ví dụ: tiểu thuyết, kỹ thuật, học thuật, v.v.).
-    - Soluong: Số lượng sách có sẵn trong thư viện.
+     - ID_book: Unique identifier of the book.
+     - Tensach: Full name of the book.
+     - ID_tacgia: Name of author or related authors.
+     - Theloai: Genre of the book (e.g. fiction, technical, academic, etc.).
+     - Soluong: Number of books available in the library.
   
--  	**Bảng "Đọc giả" gồm các trường:**
-    -  	ID_docgia: Mã định danh duy nhất của đọc giả.
-    -  	Tendocgia: Tên đầy đủ của đọc giả.
-    -  	Diachi: Địa chỉ của đọc giả.
-    -  	Email: Địa chỉ email của đọc giả.
-    -  	SDT: Số điện thoại liên hệ của đọc giả.
-    -  	TinhtrangDocgia: tình trạng đọc giả có nợ sách hay không.
+- **The "Đọc Giả" table includes the following fields:**
+     - ID_docgia: Reader's unique identifier.
+     - Tendocgia: Reader's full name.
+     - Diachi: Reader's address.
+     - Email: Reader's email address.
+     - SDT: Reader's contact phone number.
+     - TinhtrangDocgia: status of readers whether they owe books or not.
   
--  	**Bảng "Mượn sách" gồm các trường:**
-    -  	ID_muonsach: Khoá chính định danh duy nhất 1 đơn mượn sách
-    -  	ID_sach: Liên kết với bảng "Sách" để định danh sách sách mà khách hàng mượn.
-    -  	ID_docgia: Liên kết với bảng "Đọc giả" để định danh khách hàng mượn sách.
-    -  	ID_nhanvien: Liên kết với bảng “Nhân viên” để định danh nhân viên cho mượn quyển sách đấy 
-    -  	Ngaymuon: Ngày mà sách được mượn.
-    -  	Ngayhethan: Ngày mà sách phải được trả về.
-    -  	TinhtrangMuonsach: Tình trạng mượn sách đã trả hay chưa.
- 
--	**Bảng "Nhân viên" gồm các trường:**
-    -	ID_nhanvien: Mã định danh duy nhất của nhân viên.
-    -	Tennhanvien: Tên đầy đủ của nhân viên.
-    -	Chức vụ: Chức vụ công việc của nhân viên trong thư viện.
-    -	Email: Email của nhân viên.
-    -	Diachi : Địa chỉ của nhân viên
-    -	Luong: Mức lương của nhân viên.
+- **The "Mượn sách" table includes the following fields:**
+     - ID_muonsach: Primary key that uniquely identifies a book loan order
+     - ID_book: Links to the "Books" table to identify the list of books that customers borrow.
+     - ID_docgia: Linked to the "Readers" table to identify customers who borrow books.
+     - ID_nhanvien: Linked to the "Employee" table to identify the employee who lent that book
+     - Phaomuon: The day the book was borrowed.
+     - Doanhhethan: The date when the book must be returned.
+     - TinhtrangMuonsach: Status of whether borrowed books have been returned or not.
+
+- **The "Nhân viên" table includes the following fields:**
+     - ID_nhanvien: Unique identifier of the employee.
+     - Tenhanvien: Full name of the employee.
+     - Position: Job position of library staff.
+     - Email: Employee's email.
+     - Diachi: Address of the employee
+     - Salary: Salary of the employee.
     
--	**Bảng “Tác giả” gồm các trường:**
-    -	ID_tacgia: Mã định danh duy nhất của tác giả.
-    -	Tentacgia: họ và tên đầy đủ của tác giả.
-    -	Ngaysinh: Ngày tháng năm sinh của tác giả.
-    -	Ngaymat: Ngày tháng năm mất của tác giả.
-    -	Mota: Mô tả ngắn gọn về cuộc đời thể loại ưa thích của tác giả.
+- **The "Tác giả" table includes the following fields:**
+     - ID_tacgia: Author's unique identifier.
+     - Tentacgia: full name of the author.
+     - Date of birth: Author's date of birth.
+     - Evenmat: Date of death of the author.
+     - Mota: Brief description of the author's favorite genre's life.
 
     ![image](https://github.com/manh21082002/Library-Distributed-Database./assets/100988312/7fa4f219-5452-4d1b-9e0b-9b0daf6d83d3)
-# 2	Thiết kế phân tán:
--    Có 4 trạm dữ liệu: sự dụng thuật toán năng lương liên kết để phân mảnh dọc và tần suất truy vấn đề phân mảnh ngang
--    Hai bảng được chọn phân mảnh dọc : bảng nhân viên, bảng đọc giả.
--    Bảng được chọn phân mảnh ngang: bảng tác giả.
--    Bảng được chọn phân mảnh ngang dẫn xuất: bảng sách
--    Bảng được chọn nhân bản : Mượn sách
-# 3 Kiểm soát và thao tác dữ liệu:
+# 2 Distributed design:
+- There are 4 data stations: using link energy algorithm for vertical fragmentation and query frequency for horizontal fragmentation
+- Two tables are selected for vertical fragmentation: employee table, reader table.
+- Selected table with horizontal fragmentation: author table.
+- Selected table derived horizontal fragmentation: book table
+- Duplicate selected table: Borrow book
+# 3 Control and manipulate data:
 
-## Bảng sách.
+## "Sách" table.
 
-**Tạo procdure insert sách với các điều kiện sau :**
+**Create a book insert procdure with the following conditions:**
 
--    Khoá chính của sách chưa tồn tại
--    Khoá ngoại tác giả đã tồn tại
--    Insert vào đúng site cần thiết.
+- The primary key of the book does not exist
+- Author foreign key already exists
+- Insert into the correct site needed.
 
-**Tạo procedure delete_sach với các điều kiện sau:**
+**Create procedure delete_sach with the following conditions:**
 
--    Phải tồn tại sách thì mới xoá được ( tồn tại khoá chính).
--    Sách đang cho mượn thì không được xoá (tồn tại khoá tại bảng mượn sách).
--    Tìm được đúng site để xoá.
+- The book must exist to be deleted (primary key exists).
+- Books that are being loaned cannot be deleted (a lock exists in the book loan table).
+- Find the right site to delete.
 
-## Bảng tác giả
+## "Tác Giả" table
 
-**Tạo procedure insert tác giả với các điều kiện sau:**
+**Create procedure to insert author with the following conditions:**
 
--    Kiểm tra khoá chính xem đã tồn tại tại các site chưa
--    Insert dữ liệu vào đúng site cần thiết.
+- Check the primary key to see if it exists at the sites
+- Insert data into the correct site as needed.
 
-**Tạo procedure delete tác giả với các điều kiện sau:**
+**Create procedure delete author with the following conditions:**
 
--    Phải tồn tại tác giả mới xoá được (tồn tại khoá chính)
--    Phải không còn sách của tác giả trong kho sách (không tồn tại khoá ngoại tại bảng sách)
--    Tìm đến đúng site có dữ liệu xoá để xoá
+- The author must exist to delete (primary key exists)
+- There must be no more books by the author in the book store (no foreign key exists in the books table)
+- Find the correct site with deleted data to delete
 
-## Bảng Đọc Giả:
+## "Đọc Giả" Table:
 
-**Tạo procedure insert DOCGIA với các điều kiện:**
+**Create DOCGIA insert procedure with the following conditions:**
 
--    Không trùng khoá chính.
--    Insert đúng thông tin cho các mảnh tại các site.
+- No duplicate primary key.
+- Insert correct information for fragments at sites.
 
-**Tạo procedure delete docgia với các điều kiện:**
+**Create procedure delete docgia with the following conditions:**
 
--    Nếu mà đọc giả chưa tồn tại thì không xoá (trùng khoá chính).
--    Nếu đọc giả đang mượn sách thì không xoá (còn tồn tại khoá ngoại).
--    Xoá được dữ liệu ở tất cả các site.
+- If the reader does not exist, do not delete (duplicate primary key).
+- If the reader is borrowing the book, do not delete it (the foreign key still exists).
+- Can delete data on all sites.
   
-## Bảng Nhân Viên:
+## "Nhân Viên" Table:
 
-**Tạo procedure insert NHANVIEN với các điều kiện**
+**Create procedure insert NHANVIEN with conditions**
 
--    Không trùng khoá chính.
--    Insert dữ liệu vào đúng các mảnh tại site.
+- No duplicate primary key.
+- Insert data into the correct pieces at the site.
 
-**Tạo procedure delete NHANVIEN với các điều kiện:**
+**Create procedure delete NHANVIEN with the following conditions:**
 
--    Kiểm tra điều kiện khoá chính tồn tại. 
--    Xoá ở tất cả các site.
+- Check the primary key condition exists.
+- Delete on all sites.
 
-## Bảng mượn sách
+## "Mượn sách" table
 
-**Tạo procudure trả sách với các điệu kiện:**
+**Create a return procudure with the following conditions:**
  
--    Id_mượn sách phải tồn tại
--    Chuyển tình trạng mượn sách từ 0 thành 1 
+- Id_book must exist
+- Change book borrowing status from 0 to 1
 
-**Trigger insert cho bảng MUONSACH với các điều kiện yêu cầu sau:**
+**Trigger insert for MUONSACH table with the following requirements:**
 
--    Mã mượn sách không được trùng với các mã trước
--    Mã đọc giả phải tồn tại từ trước.
--    Mã nhân viên phải tồn tại từ trước.
--    Mã sách phải tồn tại từ trước
--    Số lượng sách phải lớn hơn 0
--    Kiểm tra tình trạng đọc giả xấu thì không cho mượn
--    Tinhtrangdocgia phải khác 0
--    Số lượng sách đó sẽ giảm đi 1 nếu insert thành công
+- Book loan codes cannot overlap with previous codes
+- The fake reader code must exist in advance.
+- The employee code must exist in advance.
+- The book code must exist before
+- The number of books must be greater than 0
+- Check if the reader's condition is bad and do not lend
+- Tinhtrangdocgia must be different from 0
+- The number of books will decrease by 1 if the insert is successful
+
 
 
